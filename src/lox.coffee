@@ -1,7 +1,8 @@
 routes = require './routes'
 mongoose = require 'mongoose'
-UserSchema = require './user'
+getSchema = require './user'
 
+UserSchema = null
 User = null
 
 setUser = (req, res, next) ->
@@ -14,13 +15,12 @@ setUser = (req, res, next) ->
   else do next
 
 lox = (connection, extendFn) ->
-
-  # set lox Schema
-  lox.Schema = UserSchema
-
   # check if connection arg is passed
   if typeof connection is 'string'
     connection = mongoose.createConnection(connection)
+
+  # set lox Schema
+  lox.Schema = UserSchema = getSchema(connection)
 
   # call the extend with the User Schema
   if typeof extendFn is 'function'
