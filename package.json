@@ -29,6 +29,7 @@
     "mocha": "~1.2.0"
   },
   "scripts": {
+    "postinstall": "cake build",
     "pretest": "cake build",
     "prepublish": "cake build",
     "test": "mocha --compilers coffee:coffee-script --reporter spec --no-colors"
